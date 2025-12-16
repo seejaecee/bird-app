@@ -1,1 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Climate Change Effects on Bird Migration</title>
 
+  <style>
+    body {
+      background-color: #ffe6f2;
+      font-family: "Comic Sans MS", "Trebuchet MS", sans-serif;
+      color: #5a005a;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 800px;
+      margin: 30px auto;
+      background-color: #fff0f7;
+      border: 3px solid #ff99cc;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff3399;
+      font-size: 42px;
+    }
+
+    marquee {
+      color: #ff66b2;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .nav {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #ff3399;
+      font-weight: bold;
+    }
+
+    .nav a:hover {
+      text-decoration: underline;
+      color: #cc0066;
+    }
+
+    .content {
+      display: flex;
+      gap: 20px;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #ffe6f2;
+      border: 2px dashed #ff99cc;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    .main {
+      flex: 1;
+      background-color: #ffffff;
+      border: 2px solid #ff99cc;
+      padding: 15px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      margin-top: 20px;
+      color: #aa4c88;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="#">About</a>
+      <a href="#">APP_RUNNER.ipynb</a>
+      <a href="#">birdspecies.py</a>
+      <a href="#">normalizetempdata.py</a>
+      <a href="#">alltempdata.py</a>
+      <a href="#">birdspecies.py</a>
+      <a href="#">worldbuilder.py</a>
+      <a href="#">blurbs.py</a>
+      
+    </div>
+
+    <div class="content">
+      <div class="sidebar">
+        <p><strong>Background</strong></p>
+        <p>
+          As climate change continues to devastate the environment, many species have dwindled in numbers or gone extinct. 
+          Birds across the world are especially affected, since they rely on migration to survive winters, but their migration habits are extremely sensitive to environmental factors. 
+          Habitat loss, changing day and night cycles, temperature shifts, rising sea levels, intense storms, all of these problems, caused or exacerbated by climate change, 
+          can interfere with their migration. The reproductive success of birds often depends on their migratory success, as does their health, feeding behaviors, and stress [3][7]. 
+    
+        This project will allow the general public to tangibly understand and visualize the effects of climate change on bird species, including their reproductive success 
+          and migration patterns. By raising public awareness and sympathy, the website could be a valuable tool in conservation efforts. Furthermore, it could drive further research into this area.
+        </p>
+      </div>
+
+      <div class="main">
+        <h2>Hello!!!</h2>
+        <p>
+        	For statistics about bird populations, I used four different datasets: 
+        CBC = Christmas Bird Count, 512 species, yearly North American bird abundance data
+        BF = Migratory Birds Database, 112 species, migration locations with date & other data
+        SMB = Status of Mountain Birds- 2024 review and 2010-2021 comprehensive dataset 
+        For temperature data, I used timeseries temperature anomaly data from BerkeleyEarth.
+        
+        I picked the blackpoll warbler to do more detailed analysis on since it's classified as "Near Threatened" by IUCN, 
+        undertakes long distance intercontinental migrations, and is "Moderately Vulnerable" to climate change warming effects, 
+          according to the Audobon Institute. Using SMB data I modeled its population and whether its migration movements are changing with temperature.  
+          I also graphed a few of its routes. I found that westward changes in longitude were happening as the years went by, 
+          so I correlated these with the simulated temperature time series prediction data to make a Gillespie simulation to model the warbler’s possible routes. 
+        I also made an interactive map with bird species information and migratory routes.         </p>
+
+      </div>
+    </div>
+
+    <div class="footer">
+      © 2025–2025 CJ Carpenter
+    </div>
+  </div>
+
+</body>
+</html>
