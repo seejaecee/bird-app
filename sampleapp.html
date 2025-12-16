@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>SWAG</title>
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:43761/static/extensions/panel/images/apple-touch-icon.png"><link rel="apple-touch-icon" href=""><link rel="icon" href="http://localhost:43761/favicon.ico">    <style>
+      html, body {
+	display: flow-root;
+        box-sizing: border-box;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <style>
+        
+@font-face {
+  font-family: Delius;
+}
+.sidebar {
+    background: linear-gradient(135deg, #FF9EB3, #FFF954);
+    border-radius: 12px;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    color: #D88CF8 !important;
+    box-shadow: 0 0 10px rgba(245, 40, 145, 0.8);
+    font-family: Delius; 
+    --bokeh-mono-font: Delius;
+}
+.legendbox{
+    background: linear-gradient(135deg, #FF9EB3, #FFF954);
+    border-radius: 12px;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    color: #D88CF8 !important;
+    box-shadow: 0 0 10px rgba(245, 40, 145, 0.8);
+    font-family: Delius; 
+    --bokeh-mono-font: Delius;
+}
+.blurb {
+    font-size: 18px;
+    line-height: 1.2em;
+}
+.swag {
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(245, 40, 145, 0.8);
+}
+.birb {
+    fill: #D88CF8 !important;
+}
+
+    </style>
+<script type="esms-options">{"shimMode": true}</script>
+
+<script type="text/javascript" src="sampleapp_files/es-module-shims.min.js"></script>
+<script type="text/javascript" src="sampleapp_files/bokeh.min.js"></script>
+<script type="text/javascript" src="sampleapp_files/bokeh-gl.min.js"></script>
+<script type="text/javascript" src="sampleapp_files/bokeh-widgets.min.js"></script>
+<script type="text/javascript" src="sampleapp_files/bokeh-tables.min.js"></script>
+<script type="text/javascript" src="sampleapp_files/bokeh-mathjax.min.js"></script>
+<script type="text/javascript" src="sampleapp_files/panel.min.js"></script><style media="screen">.json-formatter-row {
+  font-family: monospace;
+}
+.json-formatter-row,
+.json-formatter-row a,
+.json-formatter-row a:hover {
+  color: black;
+  text-decoration: none;
+}
+.json-formatter-row .json-formatter-row {
+  margin-left: 1rem;
+}
+.json-formatter-row .json-formatter-children.json-formatter-empty {
+  opacity: 0.5;
+  margin-left: 1rem;
+}
+.json-formatter-row .json-formatter-children.json-formatter-empty:after {
+  display: none;
+}
+.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {
+  content: "No properties";
+}
+.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {
+  content: "[]";
+}
+.json-formatter-row .json-formatter-string,
+.json-formatter-row .json-formatter-stringifiable {
+  color: green;
+  white-space: pre;
+  word-wrap: break-word;
+}
+.json-formatter-row .json-formatter-number {
+  color: blue;
+}
+.json-formatter-row .json-formatter-boolean {
+  color: red;
+}
+.json-formatter-row .json-formatter-null {
+  color: #855a00;
+}
+.json-formatter-row .json-formatter-undefined {
+  color: #ca0b69;
+}
+.json-formatter-row .json-formatter-function {
+  color: #FF20ED;
+}
+.json-formatter-row .json-formatter-date {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.json-formatter-row .json-formatter-url {
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+.json-formatter-row .json-formatter-bracket {
+  color: blue;
+}
+.json-formatter-row .json-formatter-key {
+  color: #00008b;
+  padding-right: 0.2rem;
+}
+.json-formatter-row .json-formatter-toggler-link {
+  cursor: pointer;
+}
+.json-formatter-row .json-formatter-toggler {
+  line-height: 1.2rem;
+  font-size: 0.7rem;
+  vertical-align: middle;
+  opacity: 0.6;
+  cursor: pointer;
+  padding-right: 0.2rem;
+}
+.json-formatter-row .json-formatter-toggler:after {
+  display: inline-block;
+  transition: transform 100ms ease-in;
+  content: "►";
+}
+.json-formatter-row > a > .json-formatter-preview-text {
+  opacity: 0;
+  transition: opacity 0.15s ease-in;
+  font-style: italic;
+}
+.json-formatter-row:hover > a > .json-formatter-preview-text {
+  opacity: 0.6;
+}
+.json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {
+  transform: rotate(90deg);
+}
+.json-formatter-row.json-formatter-open > .json-formatter-children:after {
+  display: inline-block;
+}
+.json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {
+  display: none;
+}
+.json-formatter-row.json-formatter-open.json-formatter-empty:after {
+  display: block;
+}
+.json-formatter-dark.json-formatter-row {
+  font-family: monospace;
+}
+.json-formatter-dark.json-formatter-row,
+.json-formatter-dark.json-formatter-row a,
+.json-formatter-dark.json-formatter-row a:hover {
+  color: white;
+  text-decoration: none;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-row {
+  margin-left: 1rem;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty {
+  opacity: 0.5;
+  margin-left: 1rem;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty:after {
+  display: none;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {
+  content: "No properties";
+}
+.json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {
+  content: "[]";
+}
+.json-formatter-dark.json-formatter-row .json-formatter-string,
+.json-formatter-dark.json-formatter-row .json-formatter-stringifiable {
+  color: #31f031;
+  white-space: pre;
+  word-wrap: break-word;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-number {
+  color: #66c2ff;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-boolean {
+  color: #EC4242;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-null {
+  color: #EEC97D;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-undefined {
+  color: #ef8fbe;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-function {
+  color: #FD48CB;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-date {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.json-formatter-dark.json-formatter-row .json-formatter-url {
+  text-decoration: underline;
+  color: #027bff;
+  cursor: pointer;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-bracket {
+  color: #9494ff;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-key {
+  color: #23a0db;
+  padding-right: 0.2rem;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-toggler-link {
+  cursor: pointer;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-toggler {
+  line-height: 1.2rem;
+  font-size: 0.7rem;
+  vertical-align: middle;
+  opacity: 0.6;
+  cursor: pointer;
+  padding-right: 0.2rem;
+}
+.json-formatter-dark.json-formatter-row .json-formatter-toggler:after {
+  display: inline-block;
+  transition: transform 100ms ease-in;
+  content: "►";
+}
+.json-formatter-dark.json-formatter-row > a > .json-formatter-preview-text {
+  opacity: 0;
+  transition: opacity 0.15s ease-in;
+  font-style: italic;
+}
+.json-formatter-dark.json-formatter-row:hover > a > .json-formatter-preview-text {
+  opacity: 0.6;
+}
+.json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {
+  transform: rotate(90deg);
+}
+.json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-children:after {
+  display: inline-block;
+}
+.json-formatter-dark.json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {
+  display: none;
+}
+.json-formatter-dark.json-formatter-row.json-formatter-open.json-formatter-empty:after {
+  display: block;
+}
+</style>
+<script type="text/javascript" src="sampleapp_files/geoviews.min.js"></script>
+
+<script type="text/javascript">
+  Bokeh.set_log_level("info");
+</script>  </head>
+  <body>
+    <div id="444c727e-8cb6-431d-9bf7-b8b12d99f8be" data-root-id="b3d55844-8fa6-4107-8c07-395d344630fb" style="display: contents;"><div class="bk-panel-models-layout-Column"></div></div>
+  <div id="dade2601-96c4-4b71-b8b1-3be1ddf02acf" data-root-id="c6a6dd10-b0fa-4104-aca9-cc3920e9ea0b" style="display: contents;"></div>
+  <div id="95424296-4c3c-4855-9055-219942b08476" data-root-id="09b0f5ba-fcb8-41ba-b5af-ca316e09b67a" style="display: contents;"></div>
+  
+    <script type="application/json" id="34317a38-d911-4daa-8128-3e80f20ee646">
+      {}
+    </script>
+    <script type="text/javascript">
+      (function() {
+        const fn = function() {
+          Bokeh.safely(function() {
+            (function(root) {
+              function embed_document(root) {
+              const docs_json = document.getElementById('34317a38-d911-4daa-8128-3e80f20ee646').textContent;
+              const render_items = [{"token":"eyJzZXNzaW9uX2lkIjogIlZIS0E0YkIxU0NxdlU4NWVNWldtUnFiQ3hSNnZNTFhYeU1PUU0yam1GSEs0IiwgInNlc3Npb25fZXhwaXJ5IjogMTc2MzY2OTAyOSwgIl9fYmtfX3psaWJfIjogImVOcVZWMWx6NDhZWl9Dc3FQU1dPNUozNzBKWXF0UTRwUmlvRGpIWkpNY0NMYTA2ZUlOYzZkaW1ZX3U5cFVLa2s5aEt1aWtvU1FRQUQ5UFQwMV8zTkwtZUw1R0o2ZkRxX092dmxfTy03cDJjY25HOTJ3VzBXLUhJbHVGYjBfT0xzZlBxVUhpOF96TlAyZUVPeGE1ZWJqWHNudnlkbmZfb25wZV9QZmx4dVhfWm5lNk4tVXVMOTJlT1hLeXJJOS1UUFo2TVUxcnQzakZDQ1gzcDJzM3hNZWJkX2Q3emFQZmREQ09uejhablBhZl84YnZIY2JDN2M1OC1iWlhEUHk5MzIzYjQ3ODVmOTc4ODJtX2NfWDVQdjdjVjM3NzQ3SHBuX1B1enlSN2VkdjdoNTZwNmF0cGZUVHhkcGU3eEpfczlOdzIzWXhlVjIzdDAwYjVlZkw4NWl5aHYzbkM3T19PUEZXZnYwSEx1N183YmJibFBvWHRyZHVFN3A4NlhiTEwta0l5ZWY1NDhnN19KMi01VEN5Mk82X0poLWZrbFB6eDJaNTBmV1BxVndlWk9ldy1KeWtONm9qYnZ3MG5Rc191WnFzWXRIdEZ2M1pUa0hodDllX2JSOGZydTYyXzd1U3JjcTNaV19IdF8yajhmbDduSDVfTnFkZWJrbUYyZkw4MTl4T3V4MjYyVjZXLUVYRE5pNkpsMy1aNGt2RFg2NkVleEFyOGlCa2l1cUZWZVNTMklPakZfMWpEZ0ljVld5Z3RXck9hc242MzNSM0lweWRMTXEyMFZUVFI1VzlXamFGcmhXanFhdjQ4bnctbUNaRkVvYm5xTFNpVk11b3VXVU9TdXlwMGtxSFlKbG5BaGxMSmZjQloyWkY1UnpreWcxZ2FUY1RmQ25fZE5qZnNQS2xGUlNKbjBnaEVraUtWR0tXS3R5TkZxeGtLMGhNU1REY3p4Z09vd1pJdlZSSXFlblk3OGxRRWxOVlQ4QnRpT2dhb2V5WHQzenNybFpsMDNWbG9NUC0ySTJsT1ZnVFlyMmxsY3RyclZyWGdfbTF3ZER0QUlLR2J4M3dWRkxxZEkyeHlSRVlvRUtvTVlNRkhQUnhwQWRFODRuN3lNUGhBWGhPTTI5NkMwNWdWNWhfWHJSVzlLaHI1dUhUYkVLb2hqY05kV3FYcFdqZXpLZTNaSXhscXhZUlN4anZTa0dRWXhueGZVaFp5NnRORjd6UkJTampBakh0UFJKMG1UQnVmTk95aXhvU2lScUhtWGdKS21rUk1TY0xiUEc5Nk9ucDlBTHd2dlIwdzU5TVJpeWtsVzhZSGZkTEZnNWlBMjRmaTJiZW9uWmJLcDJLaUhNMTdxNXZ6NndhTE5SbnVac2dvMGtZU0tFSlpmQU1mWE1RVFUweTJ3RnBaUlpLVndrVVJtYVRNck1hSzF0UDNwMkNyMnl0aDg5TzZLZjNUVGp5ZTNYYWpKRW1kU0xjdlN4S1NjYjhBMUZOZmVpbUV5X2xvTmJWczZxNjBPTVFNV1RON1FUUl9JV2RlTEJzM1dTUktETWtWcXROT2RVUzZxSkVrTGFpSk9KdUNCdEVyM28xVGZvbVRIUVpiX3UxUnY2VWQxVXM2S3RWeFVId3RkeVZMQnlzbWpLMWJTdEpoOUVOVm56OGVDSFRiMEsxd2ZpYldTSk9pbW9vOHhIeDQwZ1FtSVpiYzRob3ZwRmRsU0VFQ1JKU1VEeG5GZ1pWT1lVT3NxdUQ3M1ZfQlI2YTNxVmd4Rkg5RTFGNjlYZHNoaDlYSXduZFlPcVJaVnVGdVhzZmwtTWJsblYxT3Vxclp0aXNyNC1CT1ZKNXRBRVl4SWFnV1pBYUlqVTVPQzhwY0hrVEdpMGlRblVyODJhb0FaODhOcHJsb0xqcVpkN2RvSjdlSUxwNTU2OWNUOVl0LU1aX0dZRWxiVHoxN0tyM25iZDFoTWNULWI3aXBXWTFSUzFBZDBINkEzYWRvUVFiYmxST2l2YjRTVEJKNjJDRTVJbEhoTXhLRlZEZlJhTVpzYVV5dElxLUxfdTVWNkpFLWk1VmIyZWd4SEh5SmpWcTNweUs4RDZ1cHJkMDNMd3NDaWF1M1d4dWxtT0J4X1g5YXhjRnJOQ2xnMGlJek1ITUlrclI1STFRak5ORFQ0Y0VNdVlFa3lTczVSVUVBU1Y0S2xrZUlsVGlrWERuVlJfNERua0ctVndBV3Vtc3BkN2NsUk8yZHlTYXZXd0tBZHd5OG5IWlRtcVdEMjdhNHBSQWIwWHBHaEtlTkFQeTdMekhJNlVTRDVMSlN3VDBVRTdxdE1OWTlyWXdCTGtuUkNFVnFlZ1lFMUVHSTRsVXBFR0JLSkwydmR6VDA2Z0J5LTBuX3VqMzFjenhIUHpFV3E1V1ZUTmtKZUQtYjZjRFVrOWUyaUtWVmV0UTFKMjlkQk9FZGVhRThkNWdtbEdINUNsMlRDUERJZl91OFFVMVZGQTVwUllIU1I4aHlISk9Bc0dPZUJVMHFGWE9VYkswLWhGTF9kU0hybHY1NlJjZlhndEp2ZHNQQnBDOTRGVzdHWlpUZkE1Zy1aSGxhamF6b2R1TzhlTWxtUUFNYkJBeGdFWUhzUmdvbHJEOTFYUVhra3Z2V0VoQlEtaEl4OFloYVNNUk5neTEtdVlscW5fRXoxR0hLdVczWkp5VUVFOVFhS0NvZnZBaTlIZG9wZ0VjQTdObzEycUI1dFZOWUhmRy05Vk5ON2hQMmZFUnUtTnlCQTRHZ01tczNSUy0yQ0V5bmh2RmhCUWhvSEdBSEZKOUVHbXY4LXg2dHVzUlJlbHVlbFh6akZycS1hZUZhT2JwcHhOZWRHdU1aTjdVckliT09aVVZLdjd0aGpVaXhyS0dYZmNJNGdpREowRGx6TkNvSTBMbnVWa05hb3paMldjUnFObWtXaE9VZXZRdUdrclBaZFNKS0Y4SXIxOWppWGtCSHBELTl0VWpEZ3FaNER1WUhUX0N0X3Z1Z000WjlFV0ktVHM3QUhIRHcxbXQ0ZHVNRHYwT1NRRUJWdU1GclVMclVTU3RVOVdLSTRnY0YwNGFnM3ZvUWcxcG4wMGthUFBDbGdTcVVsa1NxaGU5UEpFcHlBWmtiMmVneEVkLXZGZ0NJN2hMUXpxYmo5QTkzQjRkcmRHblM2cUdUeG9jaXVMZHRpV0RGV2Jjc0FFTk0xb3RXRWxDYUxCMTZ3MDhVbzdDZXVCeUQxY1BxRmtneFlFWGJTSGVfcllkYVU2OU91ZW45b2ljUHNIdWo4NlpyVXFvZWxBeGdQb250VWJlQTVxZFBnNkhzeHBPUW53b0UxVGd2dXE2M09VRll4emhyMEJnLU5qYzRES1Fyb0dMbk5BcFpvdVp0R21FVTZkTnFGejFtamctREJPalNxZ3RMOVRPTmtoNl82c3hZZzM3c08tR0V5UlZ2Q2I3bTlRaVhvMjNLTXotSXJPLUN0V1pGLTBpMFhCb0J4c09yeTN3SjBGZkRGckdqdmNRRXFkSW9tZ1BJWFJ6SEVuQWhwbFRZWDN3bnBpb3FiV3cwTDdxX2JVN3NSbzhnZC1fLV9kU1Z3Z241QkdCYlNQckIxVmNFX3NScHBLVnMxMEQ5OXBLZ1lQbXFGcVVYNUdvZEZFMVZJRUxGRmV1U2dvdG1jbXdSUWptakxLMGI5cHpKSXFnMVpOT2hVSUJDU1FjZGtjZDVydWNYN2MzQjczbXJfLS1pOEozZTQ3In0","roots":{"b3d55844-8fa6-4107-8c07-395d344630fb":"444c727e-8cb6-431d-9bf7-b8b12d99f8be","c6a6dd10-b0fa-4104-aca9-cc3920e9ea0b":"dade2601-96c4-4b71-b8b1-3be1ddf02acf","09b0f5ba-fcb8-41ba-b5af-ca316e09b67a":"95424296-4c3c-4855-9055-219942b08476"},"root_ids":["b3d55844-8fa6-4107-8c07-395d344630fb","c6a6dd10-b0fa-4104-aca9-cc3920e9ea0b","09b0f5ba-fcb8-41ba-b5af-ca316e09b67a"],"use_for_title":false}];
+              root.Bokeh.embed.embed_items(docs_json, render_items);
+              }
+              if (root.Bokeh !== undefined) {
+                embed_document(root);
+              } else {
+                let attempts = 0;
+                const timer = setInterval(function(root) {
+                  if (root.Bokeh !== undefined) {
+                    clearInterval(timer);
+                    embed_document(root);
+                  } else {
+                    attempts++;
+                    if (attempts > 100) {
+                      clearInterval(timer);
+                      console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                    }
+                  }
+                }, 10, root)
+              }
+            })(window);
+          });
+        };
+        if (document.readyState != "loading") fn();
+      else document.addEventListener("DOMContentLoaded", fn, {once: true});
+      })();
+    </script>
+  
+<div></div><div></div><div class="bk-Notifications"></div></body></html>
